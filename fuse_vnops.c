@@ -85,7 +85,7 @@ fuse_vnop_access(struct vnop_access_args *ap)
         if (vnode_isvroot(vp)) {
             return 0;
         } else {
-            return EBADF;
+            return EIO;
         }
     }
 
@@ -719,7 +719,7 @@ fuse_vnop_getattr(struct vnop_getattr_args *ap)
         if (vnode_isvroot(vp)) {
             goto fake;
         } else {
-            return EBADF;
+            return EIO;
         }
     }
 
@@ -873,7 +873,7 @@ fuse_vnop_getxattr(struct vnop_getxattr_args *ap)
     fuse_trace_printf_vnop();
 
     if (fuse_isdeadfs(vp)) {
-        return EBADF;
+        return EIO;
     }
 
     CHECK_BLANKET_DENIAL(vp, context, ENOENT);
@@ -1005,7 +1005,7 @@ fuse_vnop_kqfilt_add(struct vnop_kqfilt_add_args *ap)
     fuse_trace_printf_vnop();
 
     if (fuse_isdeadfs(vp)) {
-        return EBADF;
+        return EIO;
     }
 
     switch (kn->kn_filter) {
@@ -1158,7 +1158,7 @@ fuse_vnop_listxattr(struct vnop_listxattr_args *ap)
     fuse_trace_printf_vnop();
 
     if (fuse_isdeadfs(vp)) {
-        return EBADF;
+        return EIO;
     }
 
     CHECK_BLANKET_DENIAL(vp, context, ENOENT);
@@ -2159,7 +2159,7 @@ fuse_vnop_pathconf(struct vnop_pathconf_args *ap)
     fuse_trace_printf_vnop();
 
     if (fuse_isdeadfs(vp)) {
-        return EBADF;
+        return EIO;
     }
 
     CHECK_BLANKET_DENIAL(vp, context, ENOENT);
@@ -2404,7 +2404,7 @@ fuse_vnop_readdir(struct vnop_readdir_args *ap)
     fuse_trace_printf_vnop();
 
     if (fuse_isdeadfs(vp)) {
-        return EBADF;
+        return EIO;
     }
 
     CHECK_BLANKET_DENIAL(vp, context, EPERM);
@@ -2482,7 +2482,7 @@ fuse_vnop_readlink(struct vnop_readlink_args *ap)
     fuse_trace_printf_vnop();
 
     if (fuse_isdeadfs(vp)) {
-        return EBADF;
+        return EIO;
     }
 
     CHECK_BLANKET_DENIAL(vp, context, ENOENT);
@@ -2714,7 +2714,7 @@ fuse_vnop_removexattr(struct vnop_removexattr_args *ap)
     fuse_trace_printf_vnop();
 
     if (fuse_isdeadfs(vp)) {
-        return EBADF;
+        return EIO;
     }
 
     CHECK_BLANKET_DENIAL(vp, context, ENOENT);
@@ -2980,7 +2980,7 @@ fuse_vnop_setattr(struct vnop_setattr_args *ap)
      */
 
     if (fuse_isdeadfs(vp)) {
-        return EBADF;
+        return EIO;
     }
 
     CHECK_BLANKET_DENIAL(vp, context, ENOENT);
@@ -3103,7 +3103,7 @@ fuse_vnop_setxattr(struct vnop_setxattr_args *ap)
     fuse_trace_printf_vnop();
 
     if (fuse_isdeadfs(vp)) {
-        return EBADF;
+        return EIO;
     }
 
     CHECK_BLANKET_DENIAL(vp, context, ENOENT);
@@ -3586,7 +3586,7 @@ fuse_vnop_ioctl(struct vnop_ioctl_args *ap)
     fuse_trace_printf_vnop_novp();
 
     if (fuse_isdeadfs_fs(vp)) {
-        return EBADF;
+        return EIO;
     }
 
     CHECK_BLANKET_DENIAL(vp, context, EPERM);
